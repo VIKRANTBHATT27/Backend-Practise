@@ -1,0 +1,25 @@
+POST request: /api/users
+Time: 3/1/2026, 10:55:50 pm
+By: anonymous
+Id: unknown
+
+DELETE request: /api/users/502
+Time: 3/1/2026, 10:56:23 pm
+By: anonymous
+Id: unknown
+
+POST request: /api/users
+Time: 3/1/2026, 11:00:50 pm
+IP Address: ::1
+Id: unknown
+
+GET request: /api/users/501
+Time: 3/1/2026, 11:01:10 pm
+IP Address: ::1
+Id: unknown
+
+PATCH request: /api/users/501
+Time: 3/1/2026, 11:01:14 pm
+IP Address: ::1
+Id: unknown
+

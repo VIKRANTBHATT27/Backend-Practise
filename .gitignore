@@ -1,0 +1,4 @@
+# ignore node_modules in specific folders
+/Basics/node_modules/
+/practise-1/node_modules/
+
