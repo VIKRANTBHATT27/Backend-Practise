@@ -588,3 +588,33 @@ Time: 19/1/2026, 11:12:57 pm
 IP Address: ::1
 Id: unknown
 
+GET request: /api/users/
+Time: 31/1/2026, 4:08:22 pm
+IP Address: ::1
+Id: unknown
+
+GET request: /api/user/
+Time: 31/1/2026, 4:09:31 pm
+IP Address: ::1
+Id: unknown
+
+GET request: /users/
+Time: 31/1/2026, 4:09:44 pm
+IP Address: ::1
+Id: unknown
+
+GET request: /api/users
+Time: 31/1/2026, 4:10:30 pm
+IP Address: ::1
+Id: unknown
+
+GET request: /api/users
+Time: 31/1/2026, 4:10:55 pm
+IP Address: ::1
+Id: unknown
+
+GET request: /api/users/69624f9f6f5ce47603422665
+Time: 31/1/2026, 4:11:42 pm
+IP Address: ::1
+Id: unknown
+

@@ -4,7 +4,7 @@ const User = require('../models/user.js');
 const { ObjectId } = mongoose.Types;
 
 const getAllDBUsers = async (req, res) => {
-     const allDbUsers = await Users.find({});
+     const allDbUsers = await User.find({});
      return res.json(allDbUsers);
 };
 

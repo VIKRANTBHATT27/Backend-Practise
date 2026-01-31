@@ -1,5 +1,7 @@
 # ignore node_modules in specific folders
 /Basics/node_modules/
-/practise-1/node_modules/
-/practise-1/.env
+/practise/node_modules/
+/practise/.env
 /self-practice/node_modules
+/url_shortner/node_modules
+/url_shortner/.env
