@@ -1,21 +1,15 @@
 const express = require('express');
+const router = express.Router();
+ 
 const { 
      handleGenerateShortUrl,
      handleRedirectingUrl,
-     handleGetAnalytics,
-     handleServerSideRendering
+     handleGetAnalytics
 } = require('../controller/url');
 
-const router = express.Router();
+router.post('/', handleGenerateShortUrl);
+router.get('/:url', handleRedirectingUrl);
 
-// server side renering
-router.get('/testing', handleServerSideRendering);
+router.get('/analytics/:shortId', handleGetAnalytics);
 
-router.post('/url', handleGenerateShortUrl);
-router.get('/url/:url', handleRedirectingUrl);
-
-router.get('/url-analytics/:shortId', handleGetAnalytics);
-
-module.exports = {
-     router
-}
+module.exports = router;

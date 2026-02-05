@@ -23,10 +23,10 @@ const handleGenerateShortUrl = async (req, res) => {
           const response = await urlModel.findOne({ redirectingUrl });
 
           if (response !== null) {
-               return res.status(200).json({
+               return res.render("home.ejs", {
                     msg: "URL already exists in DB",
                     id: response.shortId,
-                    link: `http:localhost:${process.env.PORT}/${response.shortId}`,
+                    link: `http:localhost:${process.env.PORT}/url/${response.shortId}`,
                });
           }
      } catch (err) {
@@ -40,13 +40,14 @@ const handleGenerateShortUrl = async (req, res) => {
                shortId,
                redirectingUrl: url[url.length - 1] != "/" ? url + "/" : url,
                visitHistory: [],
+               createdBy: req.user._id,
+          });
+  
+          return res.render('home', {
+               id: shortId,
+               link: `http:localhost:${process.env.PORT}/url/${response.shortId}`,
           });
 
-          return res.status(200).json({
-               msg: "new document created",
-               id: shortId,
-               link: `http:localhost:${process.env.PORT}/${response.shortId}`,
-          });
      } catch (err) {
           console.log(err);
           return res.status(500).json({ err: "internal server error" });
@@ -94,16 +95,9 @@ const handleGetAnalytics = async (req, res) => {
      }
 };
 
-const handleServerSideRendering = async (req, res) => {
-     const DATA = await urlModel.find({});
-     res.render("home.ejs", {
-          arr: DATA
-     });
-};
 
 module.exports = {
      handleGenerateShortUrl,
      handleRedirectingUrl,
      handleGetAnalytics,
-     handleServerSideRendering,
 };

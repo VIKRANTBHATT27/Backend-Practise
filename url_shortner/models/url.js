@@ -20,11 +20,15 @@ const urlSchema = mongoose.Schema(
                required: true,
                unique: true
           },
-          visitHistory: [ { timestamps: String } ]
+          visitHistory: [ { timestamps: String } ],
+          createdBy: {
+               type: mongoose.Schema.Types.ObjectId,
+               ref: "userModel",
+          }
      },
      { 
           timestamps: true,
-          collection: 'urlSchema'
+          collection: 'urlModel'
      }
 );
 

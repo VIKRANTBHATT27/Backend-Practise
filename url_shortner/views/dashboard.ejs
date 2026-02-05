@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/style.css">
+     <style>
+          h1 {
+               background-color: transparent;
+               text-decoration: none;
+          }
+     </style>
+     <title>SERVER - SIDE RENDERING</title>
+</head>
+
+<body>
+     <h1>All DataBase Short Ids</h1>
+     <table>
+          <tr>
+               <th>Short Id</th>
+               <th>Redirecting Url</th>
+               <th>Total Clicks</th>
+          </tr>
+          <% arr.forEach(doc => { %>
+               <tr>
+                    <td>
+                         <%= doc.shortId %>
+                    </td>
+                    <td>
+                         <a target="_blank" href=<%= doc.redirectingUrl %>>
+                              <%= doc.redirectingUrl %>
+                         </a>
+                    </td>
+                    <td>
+                         <%= doc.visitHistory.length %>
+                    </td>
+               </tr>     
+          <% }); %>
+     </table>
+</body>
+
+</html>

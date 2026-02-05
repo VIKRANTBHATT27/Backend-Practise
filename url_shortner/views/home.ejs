@@ -1,55 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Generate Short URL</title>
+     <link rel="stylesheet" href="/style.css">
      <style>
-          table {
-               border-collapse: collapse;
-               /* Merge borders */
-               width: 50%;
+          body, html {
+               background-color: white;
           }
 
-          th,td {
-               border: 1px solid black;
-               /* Border for cells */
-               padding: 8px;
-               text-align: left;
-          }
-
-          th {
-               background-color: #f2f2f2;
-               /* Light gray header */
+          h2 {
+               margin: 0;
           }
      </style>
-     <title>SERVER - SIDE RENDERING</title>
 </head>
-
 <body>
-     <h1>all db shortId</h1>
-     <table>
-          <tr>
-               <th>Short Id</th>
-               <th>Redirecting Url</th>
-               <th>Total Clicks</th>
-          </tr>
-          <% arr.forEach(doc => { %>
-               <tr>
-                    <td>
-                         <%= doc.shortId %>
-                    </td>
-                    <td>
-                         <a target="_blank" href=<%= doc.redirectingUrl %>>
-                              <%= doc.redirectingUrl %>
-                         </a>
-                    </td>
-                    <td>
-                         <%= doc.visitHistory.length %>
-                    </td>
-               </tr>     
-          <% }); %>
-     </table>
-</body>
+     <h1>URL Shortner</h1>
+     <div style="background-color: lightsalmon; padding: 1rem; margin: 0;">
+          <% if (locals.msg) { %>
+               <h2>Already exist in DB</h3>
+          <% } %>
 
+          <% if (locals.id && locals.link) { %>
+               <span>
+                    <p>
+                         <h2 style="display: inline-block;">Id:</h2> 
+                         <span><%= locals.id %></span>
+                    </p>
+                    <p>
+                         <h2 style="display: inline-block;">Shortened URL: </h2> 
+                         <span style="font-size: x-large;">
+                              <a href="/url/<%= locals.id %>">Click Here </a>
+                         </span>
+                    </p>
+               </span>
+          <% } %>
+     </div>
+
+     <form method="post" action="/url" >
+          <div>
+               <label for="originalUrl">Original Url: </label>
+               <input type="text" id="originalUrl" name="url" placeholder="Paste a URL" required>
+               <button type="submit">Generate</button>
+          </div>
+     </form>
+</body>
 </html>

@@ -1,8 +1,12 @@
 const path = require('path');
 const dotenv = require('dotenv');
 const express = require('express');
-const { router } = require('./routes/url.js');
+const urlRoutes = require('./routes/url.js');
+const cookieParser = require("cookie-parser");
+const userRoutes = require('./routes/user.js');
 const { connectMongoDB } = require('./connection.js');
+const staticRoutes = require('./routes/staticRouter.js');
+const { restrictToLoggedInUsersOnly } = require('./middlewares/auth.js');
 
 dotenv.config();
 
@@ -18,8 +22,13 @@ connectMongoDB(`mongodb://127.0.0.1:27017/short-url`)
 
 
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, "public")))
 app.use(express.json({ extended: false }));
-app.use("/", router);
+app.use(cookieParser());
+
+app.use("/url", restrictToLoggedInUsersOnly, urlRoutes);
+app.use("/user", userRoutes);
+app.use("/", staticRoutes);
 
 
 app.listen(PORT, () => console.log(`Backend server is running on port: ${PORT}`));
