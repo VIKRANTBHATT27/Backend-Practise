@@ -5,7 +5,6 @@
      2. redirectedId
      3. time => history
 */
-
 const mongoose = require('mongoose');
 
 const urlSchema = mongoose.Schema(

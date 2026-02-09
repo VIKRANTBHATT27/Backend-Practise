@@ -1,13 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const { getUser } = require("../service/auth");
 
 const urlModel = require('../models/url.js');
 
-router.get('/dashboard', async (req, res) => {
-     const DATA = await urlModel.find({});
+router.get('/dashboard', async (req, res) => {    //checking authentication and returning only generated urls by the user._id
+     const userUID = req.cookies?.uid || null;
+     const user = getUser(userUID);
+
+     if (!user) return res.redirect('/login');
+
+     const allData = await urlModel.find({ createdBy: user._id });
      
      return res.render("dashboard.ejs", {
-          arr: DATA
+          arr: allData
      });
 });
 

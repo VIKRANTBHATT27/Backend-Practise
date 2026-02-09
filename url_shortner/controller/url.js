@@ -43,6 +43,8 @@ const handleGenerateShortUrl = async (req, res) => {
                createdBy: req.user._id,
           });
   
+          console.log(response);
+
           return res.render('home', {
                id: shortId,
                link: `http:localhost:${process.env.PORT}/url/${response.shortId}`,
