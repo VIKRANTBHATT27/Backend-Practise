@@ -13,6 +13,11 @@ const userModel = mongoose.Schema({
      password: {
           type: String,
           required: true
+     },
+     role: {
+          type: String,
+          required: true,
+          default: 'USER'
      }
 }, { timestamps: true, collection: 'userModel' });
 

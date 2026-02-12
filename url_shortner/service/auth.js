@@ -1,11 +1,12 @@
 const jwt = require('jsonwebtoken');
 const secretKey = "(*$* UrL_-_ShOrTnEr *$*)";
 
-function setUser(user) {
+function setUser(user) {      //token generation
      return jwt.sign(
           {
                _id: user._id,
-               email: user.email
+               email: user.email,
+               role: user.role,
           }, secretKey
      )
 };

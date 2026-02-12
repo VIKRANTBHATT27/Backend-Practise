@@ -1,16 +1,20 @@
 const express = require('express');
 const router = express.Router();
-const { getUser } = require("../service/auth");
 
 const urlModel = require('../models/url.js');
+const { getUser } = require("../service/auth");
+const { checkforAuthorization } = require('../middlewares/auth.js');
 
-router.get('/dashboard', async (req, res) => {    //checking authentication and returning only generated urls by the user._id
-     const userUID = req.cookies?.uid || null;
-     const user = getUser(userUID);
+router.get('/admin-dashboard', checkforAuthorization(['ADMIN']), async (req, res) => {    //checking authentication and returning only generated urls by the user._id
+     const allData = await urlModel.find({ });
+     
+     return res.render("dashboard.ejs", {
+          arr: allData
+     });
+});
 
-     if (!user) return res.redirect('/login');
-
-     const allData = await urlModel.find({ createdBy: user._id });
+router.get('/dashboard', checkforAuthorization(['USER', 'ADMIN']), async (req, res) => {    //checking authentication and returning only generated urls by the user._id
+     const allData = await urlModel.find({ createdBy: req.user._id });
      
      return res.render("dashboard.ejs", {
           arr: allData
