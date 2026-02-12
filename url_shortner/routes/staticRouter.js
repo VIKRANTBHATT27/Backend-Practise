@@ -7,7 +7,7 @@ const { checkforAuthorization } = require('../middlewares/auth.js');
 
 router.get('/admin-dashboard', checkforAuthorization(['ADMIN']), async (req, res) => {    //checking authentication and returning only generated urls by the user._id
      const allData = await urlModel.find({ });
-     
+     console.log(allData);
      return res.render("dashboard.ejs", {
           arr: allData
      });

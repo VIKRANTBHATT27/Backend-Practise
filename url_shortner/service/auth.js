@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const secretKey = "(*$* UrL_-_ShOrTnEr *$*)";
+const secretKey = process.env.JWT_SECRET;
 
 function setUser(user) {      //token generation
      return jwt.sign(
