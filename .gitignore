@@ -5,3 +5,5 @@
 /self-practice/node_modules
 /url_shortner/node_modules
 /url_shortner/.env
+/discord-bot/node_modules
+/discord-bot/.env
