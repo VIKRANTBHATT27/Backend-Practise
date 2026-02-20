@@ -13,3 +13,5 @@
 /pdf-uploader/pdf-uploader-frontend-app/.env
 /pdf-uploader/pdf-uploader-backend-app/node_modules
 /pdf-uploader/pdf-uploader-backend-app/.env
+/Youtube-Blog/node_modules
+/Youtube-Blog/.env

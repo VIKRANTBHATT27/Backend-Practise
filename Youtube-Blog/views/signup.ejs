@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <%- include('./partials/head.ejs') %>
+          <title>Sign-Up Page</title>
+          <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body>
+     <div class="header">
+          <%- include('./partials/nav.ejs') %>
+     </div>
+          <div class="mainBody">
+               <div class="container">
+                    <form action="/user/signup" method="post" enctype="multipart/form-data">
+
+                         <div class="mb-3">
+                              <label for="userName" class="form-label">Full Name</label>
+                              <input type="text" name="fullName" class="form-control" id="userName" />
+                              <p id="emailHelp" class="form-text">
+                                   Captial Letters*
+                              </p>
+                         </div>
+
+                         <div class="mb-3 w-full">
+                              <label for="emailInput" class="form-label">Email address</label>
+                              <input type="email" class="form-control" name="email" id="emailInput"
+                                   aria-describedby="email" />
+                              <p id="emailHelp" class="form-text">
+                                   Your email will not be shared with anyone
+                              </p>
+                         </div>
+
+
+                         <div class="mb-3">
+                              <label for="passwordInput" class="form-label">Password</label>
+                              <input type="password" class="form-control" name="password" id="passwordInput" />
+                              <p id="emailHelp" class="form-text">
+                                   Password is fully secured
+                              </p>
+                         </div>
+
+                         <div class="mb-3">
+                              <label for="roleInput" class="form-label">Role</label>
+                              <select name="role" id="roleInput" class="form-select">
+                                   <option value="USER" selected>User</option>
+                                   <option value="ADMIN">Admin</option>
+                              </select>
+                         </div>
+
+                         <div class="mb-3">
+                              <label for="fileInput" class="form-label">Profile Pic</label>
+                              <input class="form-control" type="file" id="fileInput" name="profilePic">
+                         </div>
+
+                         <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+               </div>
+          </div>
+
+          <%- include('./partials/script.ejs') %>
+</body>
+
+</html>

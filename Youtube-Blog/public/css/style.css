@@ -1,0 +1,53 @@
+a {
+     font-weight: 600;
+}
+
+nav > div > a {
+     margin-left: 2rem;
+     text-shadow: 0px 1px 1px rgb(0 0 0 / 0.2);
+}
+
+body {
+     overflow: hidden;
+}
+
+#navbarNavDropdown {
+     position: absolute;
+     right: 5rem;
+}
+
+.nav-item {
+     margin-left: 1rem;
+     margin-right: 1rem;
+}
+
+.container {
+     position: relative;
+     top: 6rem;
+     background-color: oklch(92.8% 0.006 264.531);
+     max-width: 80rem;
+     padding: 2rem;
+     border: 0.1rem solid oklch(37.2% 0.044 257.287);
+     box-shadow: 0 3px 80px -30px oklch(12.9% 0.042 264.695);
+     border-radius: 0.75rem;
+}
+
+#emailHelp {
+     position: absolute;
+     right: 2rem;
+     color: oklch(37.2% 0.044 257.287);
+     font-weight: 600;
+}
+
+.header {
+     position: relative;
+     width: 100vw;
+     z-index: 1;
+}
+
+.mainBody {
+     width: 100vw;
+     height: 100vh;
+     position: relative;
+     background-color: oklch(55.2% 0.016 285.938);
+}
