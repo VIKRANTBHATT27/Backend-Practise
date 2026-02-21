@@ -7,22 +7,37 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Add Blog</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">All Blogs</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Vikrant Bhatt
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Logout</a></li>
-          </ul>
-        </li>
+
+        <% if (locals.user) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/create-new">Add Blog</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#">All Blogs</a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span>
+                <%= locals.user.firstName[0] + locals.user.firstName.slice(1).toLowerCase() %>
+                <%= locals.user.lastName[0] + locals.user.lastName.slice(1).toLowerCase() %>
+              </span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+            </ul>
+          </li>
+        <% } else { %>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/user/signup">Create Account</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="/user/signin">Sign-In</a>
+          </li>
+        <% } %>
       </ul>
     </div>
   </div>

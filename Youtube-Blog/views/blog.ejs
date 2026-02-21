@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <%- include('./partials/head.ejs') %>
+          <title>HomePage</title>
+          <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+     <%- include('./partials/nav.ejs') %>
+          <div class="container px-10 py-3" id="blogForm">
+               <span id="blog-subtle-text">
+                    What's on your mind.....
+               </span>
+               <form action="/blog" method="post" enctype="multipart/form-data">
+                    <div class="input-group mb-3">
+                         <span class="input-group-text">
+                              <img width="44" height="44" src="https://img.icons8.com/emoji/96/speaking-head.png"
+                                   alt="" />
+                         </span>
+                         <div class="form-floating">
+                              <input class="form-control" type="text" name="title" id="titleInput"
+                                   placeholder="A Perfect Title" />
+                              <label for="titleInput">Title</label>
+                         </div>
+                    </div>
+
+                    <div class="form-floating">
+                         <textarea 
+                              class="form-control" 
+                              placeholder="What's on your mind......." 
+                              name="contentBody"
+                              id="contentInput" 
+                              style="height: 15rem"
+                         ></textarea>
+                         <label for="contentInput">Content</label>
+                    </div>
+
+                    <div class="form-floating">
+                         <textarea class="form-control mt-1" name="summary" id="summaryInput"
+                              style="height: 8rem"></textarea>
+                         <label for="summaryInput">Summaries your Content within Few words</label>
+                    </div>
+
+                    <div class="mt-3">
+                         <label for="imageFile" class="form-label">Cover Image</label>
+                         <input class="form-control" name="imageFile" type="file" id="imageFile">
+                    </div>
+
+                    <button type="submit" id="blogBtn" class="btn btn-outline-primary mt-2">Upload</button>
+               </form>
+          </div>
+
+          <%- include('./partials/script.ejs') %>
+</body>
+
+</html>

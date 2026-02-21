@@ -4,9 +4,6 @@ import { configDotenv } from "dotenv";
 configDotenv();
 
 (async function() {
-
-    // Configuration
-    
     
     // Upload an image
      const uploadResult = await cloudinary.uploader.upload(

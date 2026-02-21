@@ -1,7 +1,8 @@
 import { Router } from "express";
 import upload from "../middlewares/multer.js";
-import cloudinaryUpload from "../middlewares/cloudinary.js";
-import { handleSignup, handleSignin } from "../controller/index.js";
+import { delete_local_file } from "../middlewares/deleteLocalFile.js";
+import { cloudinary_profileImg_uploader } from "../middlewares/cloudinary.js";
+import { handleSignup, handleSignin, handleLogout } from "../controller/user.js";
 
 const router = Router();
 
@@ -13,7 +14,15 @@ router.get('/signin', (req, res) => {
      return res.render("signin.ejs");
 });
 
-router.post('/signup', upload.single('profilePic'), cloudinaryUpload, handleSignup);
+router.post('/signup', 
+     upload.single('profilePic'), 
+     cloudinary_profileImg_uploader, 
+     delete_local_file, 
+     handleSignup
+);
+
 router.post('/signin', handleSignin);
+router.get('/logout', handleLogout);
+
 
 export default router;

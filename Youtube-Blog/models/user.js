@@ -1,9 +1,15 @@
 const { createHmac, randomBytes } = await import("crypto");
+import tokenUtils from "../services/authentication.js";
 import { Schema, model } from "mongoose";
-import { type } from "os";
+
+const { createToken } = tokenUtils;
 
 const userSchema = new Schema({
-     fullName: {
+     firstName: {
+          type: String,
+          required: true
+     },
+     lastName: {
           type: String,
           required: true
      },
@@ -23,7 +29,7 @@ const userSchema = new Schema({
           type: String,
           default: '/images/user-profile-avatar-default.png'
      },
-     public_id: {
+     imgPublicId: {
           type: String,
           default: null
      },
@@ -33,7 +39,7 @@ const userSchema = new Schema({
           default: "USER"
      }
 
-}, { collection: 'userModel', timestamps: true });
+}, { collection: "userModel",  timestamps: true });
 
 
 userSchema.pre('save', function () {
@@ -50,7 +56,7 @@ userSchema.pre('save', function () {
      this.password = hashedPassword;
 });
 
-userSchema.static("matchPassword", async function (email, password) {
+userSchema.static("matchPasswordAndGenerateToken", async function (email, password) {
      const user = await this.findOne({ email });
      if (!user) throw new Error('User not found!');
 
@@ -63,8 +69,11 @@ userSchema.static("matchPassword", async function (email, password) {
      
      if (userProvidedHash !== hashedPassword) throw new Error('Incorrect Password!');
 
-     return {...user?._doc, password: undefined, salt: undefined };
-})
+     const token = createToken(user);
+     return token;
+
+     // return {...user?._doc, password: undefined, salt: undefined };
+});
 
 const userModel = new model("user", userSchema);
 export default userModel;

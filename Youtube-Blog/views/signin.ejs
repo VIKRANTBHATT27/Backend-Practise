@@ -12,26 +12,32 @@
           <%- include('./partials/nav.ejs') %>
      </div>
      <div class="mainBody">
+          <% if (locals.error) { %>
+               <div class="alert alert-danger" role="alert">
+                    <%= locals.error %>
+               </div>
+          <% } %>
+
           <div class="container">
                <form action="/user/signin" method="post">
-
+                    
                     <div class="mb-3 w-full">
-                         <label for="emailInput" class="form-label">Email address</label>
-                         <input type="email" class="form-control" name="email" id="emailInput"
-                              aria-describedby="email" />
-                         <p id="emailHelp" class="form-text">
-                              Your email will not be shared with anyone
-                         </p>
-                    </div>
+                              <label for="emailInput" class="form-label">Email address</label>
+                              <input type="email" class="form-control" name="email" id="emailInput"
+                                   aria-describedby="email" />
+                              <span class="form-text sutle-text">
+                                   Your email will not be shared with anyone
+                              </span>
+                         </div>
 
 
-                    <div class="mb-3">
-                         <label for="passwordInput" class="form-label">Password</label>
-                         <input type="password" class="form-control" name="password" id="passwordInput" />
-                         <p id="emailHelp" class="form-text">
-                              Password is fully secured
-                         </p>
-                    </div>
+                         <div class="mb-3">
+                              <label for="passwordInput" class="form-label">Password</label>
+                              <input type="password" class="form-control" name="password" id="passwordInput" />
+                              <span class="form-text sutle-text">
+                                   Password is fully secured
+                              </span>
+                         </div>
 
                     <button type="submit" class="btn btn-primary">Login</button>
                </form>
