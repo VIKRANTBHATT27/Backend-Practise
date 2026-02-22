@@ -4,7 +4,7 @@ configDotenv();
 
 const secretKey = process.env.AUTH_SECRET;
 
-const createToken = (user) => {
+export const createToken = (user) => {
      const payload = {
           _id: user._id,
           firstName: user.firstName,
@@ -18,7 +18,7 @@ const createToken = (user) => {
      return token;
 };
 
-const verifyToken = (token) => {
+export const verifyToken = (token) => {
      const payload = JWT.verify(token, secretKey);
      return payload;
 }

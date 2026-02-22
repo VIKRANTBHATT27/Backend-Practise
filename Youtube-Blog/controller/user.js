@@ -1,4 +1,7 @@
+import { verifyToken } from "../services/authentication.js";
 import userModel from "../models/user.js";
+import path from "path";
+import fs from "fs";
 
 export const handleSignup = async (req, res) => {
      const { firstName, lastName, email, salt, password, role } = req.body;
@@ -10,7 +13,7 @@ export const handleSignup = async (req, res) => {
           await userModel.create({
                firstName: firstName.toUpperCase(),
                lastName: lastName.toUpperCase(), 
-               email, salt, password, profileImgUrl, public_id, role
+               email, salt, password, profileImgUrl, imgPublicId, role
           });
 
           return res.redirect('/');
@@ -26,7 +29,16 @@ export const handleSignin = async (req, res) => {
      try {
           const token = await userModel.matchPasswordAndGenerateToken(email, password);
 
-          return res.cookie('token', token).redirect('/');
+          res.cookie('token', token);
+
+          const user = verifyToken(token);
+          const folderName = path.join(process.cwd(), "public", "uploaded-images", user._id.toString());
+          
+          if(!fs.existsSync(folderName)) {
+               fs.mkdirSync(folderName);
+          }
+          
+          return res.redirect("/");
      } catch (error) {
           return res.render("signin.ejs", { 
                error: error.message

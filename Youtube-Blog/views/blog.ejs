@@ -9,6 +9,11 @@
 
 <body>
      <%- include('./partials/nav.ejs') %>
+          <% if (!locals.user) { %>
+               <div class="alert alert-warning mb-0" role="alert">
+                    User is not Signin
+               </div>
+          <% } %>
           <div class="container px-10 py-3" id="blogForm">
                <span id="blog-subtle-text">
                     What's on your mind.....

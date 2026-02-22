@@ -11,12 +11,24 @@
      <%- include('./partials/nav.ejs') %>
 
      <% if (locals.user) { %>
-          <div class="m-5 overflow-x-scroll"> 
-               <%= JSON.stringify(user) %>
+          
+          <div class="main-container ">
+               <% locals.blogs.forEach(blog => { %>
+                    <% if (blog.createdBy == locals.user._id) { %>
+                         <div class="card m-xxl-4" style="width: 18rem;">
+                              <img src="<%= blog.coverImgUrl %>" class="card-img-top h-75" alt="blog-image">
+                              <div class="card-body">
+                                   <h5 class="card-title fs-5 fw-semibold"><%= blog.title.toUpperCase() %></h5>
+                                   <p class="card-text fs-6 fst-italic fw-normal mb-xl-5"><%= blog.summary %></p>
+                                   <a href="/blog/<%= blog._id %>" id="cardBtn" class="btn btn-primary ">View More</a>
+                              </div>
+                         </div>
+                    <% } %>
+               <% }) %>
           </div>
 
           <script>
-               console.log(<%- JSON.stringify(user) %>);
+               console.log(<%- JSON.stringify(blogs) %>);
           </script>
      <% } %>
 

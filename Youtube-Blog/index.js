@@ -2,6 +2,7 @@ import path from "path";
 import express from "express";
 import { configDotenv } from "dotenv";
 import cookieParser from "cookie-parser";
+import blogModel from "./models/blog.js";
 import blogRoutes from "./routes/blog.js";
 import userRoutes from "./routes/user.js";
 import connectMongoDb from "./connection.js";
@@ -27,15 +28,23 @@ app.set("views", path.resolve("./views"));
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(express.static("public"));
 app.use(checkForAuthenticationCookie("token"));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.resolve("./public")));
 
 app.use('/user', userRoutes);
 app.use('/blog', blogRoutes);
-app.get("/", (req, res) => {
+
+app.get("/", async (req, res) => {
+    
     // const user = JSON.stringify(req.user);
-    return res.render("homepage.ejs", { user: req.user });
+
+    const allBlogs = await blogModel.find({ }).sort({ createdAt: -1 });
+
+    return res.render("homepage.ejs", { 
+        user: req.user,
+        blogs: allBlogs
+    });
 });
 
 
