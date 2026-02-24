@@ -13,6 +13,7 @@ nav > div > a {
 
 body {
      overflow: hidden;
+     background-color: oklch(70.5% 0.015 286.067);
 }
 
 #navbarNavDropdown {
@@ -31,10 +32,14 @@ body {
      justify-content: center;
      padding: 2rem;
 }
+.commentContainer {
+     max-width: 80%;
+     margin: auto;
+}
 
 .container {
      position: absolute;
-     margin-top: 5rem;
+     margin-top: 3rem;
      margin-left: 15%;
      background-color: oklch(92.8% 0.006 264.531);
      max-width: 72rem;

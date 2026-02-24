@@ -1,4 +1,5 @@
 import blogModel from "../models/blog.js";
+import commentModel from "../models/comment.js";
 
 export const handleBlogData = async (req, res) => {
      console.log(req.body);
@@ -18,3 +19,13 @@ export const handleBlogData = async (req, res) => {
 
      return res.redirect(`/blog/${blogResponse._id}`);
 };
+
+export const handleComment = async (req, res) => {
+     const comment = await commentModel.create({
+          commentContent: req.body.content,
+          blogId: req.params.blogId,
+          createdBy: req.user._id,
+     });
+
+     return res.redirect(`/blog/${req.params.blogId}`)
+}

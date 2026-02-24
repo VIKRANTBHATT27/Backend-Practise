@@ -3,61 +3,64 @@
 
 <head>
      <%- include('./partials/head.ejs') %>
-          <title>HomePage</title>
-          <link rel="stylesheet" href="/css/style.css">
+     <title>Blog</title>
+     <link rel="stylesheet" href="/css/style.css">
 </head>
 
-<body>
+<body style="overflow-y: scroll;">
      <%- include('./partials/nav.ejs') %>
-          <% if (!locals.user) { %>
-               <div class="alert alert-warning mb-0" role="alert">
-                    User is not Signin
+     
+     <% if (locals.blog) { %>
+
+          <div class="blog mt-2 px-xl-5 py-2">
+               <h1 class="border-bottom border-secondary-subtle">
+                    <span style="margin-left: 10rem; position: relative;"><%= blog.title.substring(0, 40).toUpperCase() %></span>
+                    <span class="fs-6" style="margin-left: 55vh; position: absolute">~created By <%= blog.createdBy.firstName[0] + blog.createdBy.firstName.slice(1).toLowerCase() + " " + blog.createdBy.lastName[0] + blog.createdBy.lastName.slice(1).toLowerCase() %>
+                    <img src="<%- blog.createdBy.profileImgUrl %>" alt="profile-pic" style="width: 3rem; height: 3rem; border-radius: 2rem; margin-left: 0.5rem;"></span>
+               </h1>
+               <div class="row bg-white mt-3" style="height: 40%">
+                    <div class="col col-xxl-8 px-4 py-3 fs-6 border border-secondary-subtle" >
+                         <p><%= blog.content.substring(0, 2900) %></p>
+                    </div>
+                    <div class="col col-xxl-4 p-2 border border-secondary-subtle bg-secondary-subtle">
+                         <div><img src="<%- blog.coverImgUrl %>" style="width: 100%; height: 50%;" alt="blog-image"></div>
+                         <div class="border-bottom border-2 border-secondary mt-2" style="width: 100%;"></div>
+                         <div class="mt-2 text-center fs-5"><samp><%- blog.summary.substring(0, 350) %></samp></div>
+                    </div>
                </div>
-          <% } %>
-          <div class="container px-10 py-3" id="blogForm">
-               <span id="blog-subtle-text">
-                    What's on your mind.....
-               </span>
-               <form action="/blog" method="post" enctype="multipart/form-data">
-                    <div class="input-group mb-3">
-                         <span class="input-group-text">
-                              <img width="44" height="44" src="https://img.icons8.com/emoji/96/speaking-head.png"
-                                   alt="" />
-                         </span>
-                         <div class="form-floating">
-                              <input class="form-control" type="text" name="title" id="titleInput"
-                                   placeholder="A Perfect Title" />
-                              <label for="titleInput">Title</label>
-                         </div>
-                    </div>
-
-                    <div class="form-floating">
-                         <textarea 
-                              class="form-control" 
-                              placeholder="What's on your mind......." 
-                              name="contentBody"
-                              id="contentInput" 
-                              style="height: 15rem"
-                         ></textarea>
-                         <label for="contentInput">Content</label>
-                    </div>
-
-                    <div class="form-floating">
-                         <textarea class="form-control mt-1" name="summary" id="summaryInput"
-                              style="height: 8rem"></textarea>
-                         <label for="summaryInput">Summaries your Content within Few words</label>
-                    </div>
-
-                    <div class="mt-3">
-                         <label for="imageFile" class="form-label">Cover Image</label>
-                         <input class="form-control" name="imageFile" type="file" id="imageFile">
-                    </div>
-
-                    <button type="submit" id="blogBtn" class="btn btn-outline-primary mt-2">Upload</button>
-               </form>
           </div>
 
-          <%- include('./partials/script.ejs') %>
-</body>
+          <div class="commentContainer mt-3">
+               <h1>Comments</h1>
+               <% if (locals.user) { %>
+                    <form action="/blog/comment/<%- blog._id %>" method="post">
 
+                         <div class="mb-3">
+                              <input type="text" class="form-control" name="content" placeholder="Enter your Comment" />
+                              <button type="submit" class="btn btn-primary mt-2" style="margin-left: 95%;">Submit</button>
+                         </div>
+
+                    </form>
+               <% } %>
+
+               <div class="mt-3">
+                    <% comments.forEach(comment => { %>
+                         <div class="bg-white" style="border-radius: 2rem; margin: 0.2rem;">
+                              <img src="<%- comment.createdBy.profileImgUrl %>" alt="profile-pic" style="width: 2rem; height: 3rem; border-radius: 2rem; margin-left: 0.5rem;">
+                              <button style="margin-right: 1rem; margin-top: 1rem;"><%= comment.createdBy.firstName[0] + blog.createdBy.firstName.slice(1).toLowerCase() + " " + comment.createdBy.lastName[0] + comment.createdBy.lastName.slice(1).toLowerCase() %></button>
+                              <samp><%= comment.commentContent %></samp>
+                         </div>
+                    <% }) %>
+               </div>
+
+          </div>
+
+          <script>
+               const data = <%- JSON.stringify(locals.blog);%>
+               console.log(data); 
+          </script>
+     <% } %>
+
+     <%- include('./partials/script.ejs') %>
+</body>
 </html>

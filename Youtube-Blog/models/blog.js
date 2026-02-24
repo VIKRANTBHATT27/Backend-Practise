@@ -23,7 +23,7 @@ const blogSchema = new Schema({
      },
      createdBy: {
           type: Schema.Types.ObjectId,
-          ref: 'userModel',
+          ref: 'user',
           required: true
      }
 }, { collection: "blogModel", timestamps: true });
