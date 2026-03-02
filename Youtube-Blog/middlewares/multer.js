@@ -3,7 +3,7 @@ import path from "path";
 
 const customStorage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, path.resolve(`./public/uploaded-images/${req.user._id}`));
+    cb(null, path.resolve(`./public/uploaded-images`));
   },
   filename: function (req, file, cb) {
     const fileName = Date.now() + '-' + (file.originalname.replaceAll(" ", "-"));
