@@ -31,7 +31,12 @@ export const handleSignin = async (req, res) => {
 
           res.cookie('token', token);
 
-          const user = verifyToken(token);
+          // const user = verifyToken(token);
+          // const folderName = path.join(process.cwd(), "public", "uploaded-images", user._id.toString());
+          
+          // if(!fs.existsSync(folderName)) {
+          //      fs.mkdirSync(folderName);
+          // }
           
           return res.redirect("/");
      } catch (error) {
