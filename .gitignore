@@ -15,3 +15,5 @@
 /pdf-uploader/pdf-uploader-backend-app/.env
 /Youtube-Blog/node_modules
 /Youtube-Blog/.env
+/chat-application/node_modules
+/chat-application/.env
