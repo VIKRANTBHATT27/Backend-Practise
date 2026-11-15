@@ -1,0 +1,24 @@
+{
+  "name": "orm-1",
+  "version": "1.0.0",
+  "description": "Udemy course ORM-1 project",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "drizzle.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "dotenv": "^18.0.10",
+    "drizzle-orm": "^1.0.0-rc.5",
+    "express": "^5.3.0",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^1.0.0-rc.5",
+    "nodemon": "^3.1.14"
+  }
+}
